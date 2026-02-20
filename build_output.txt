@@ -1,1 +1,10 @@
-﻿ M build_output.txt
+﻿packages/api-gateway
+packages/auth-service
+packages/common
+packages/compliance-service
+packages/database
+packages/frontend
+packages/gatekeeper-service
+packages/remediation-service
+packages/risk-engine
+packages/scanner-service
