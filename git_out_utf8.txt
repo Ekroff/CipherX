@@ -1,0 +1,101 @@
+﻿interactive rebase in progress; onto 5f135e0
+Last command done (1 command done):
+   pick afe41f3 # feat: integrate frontend and wire to monorepo auth-service
+No commands remaining.
+You are currently rebasing branch 'main' on '5f135e0'.
+  (all conflicts fixed: run "git rebase --continue")
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	new file:   .env.example
+	modified:   .gitignore
+	new file:   README.md
+	new file:   docker-compose.yml
+	new file:   docs/roadmap.md
+	new file:   docs/security-hardening.md
+	new file:   health-check.txt
+	new file:   health.txt
+	new file:   infrastructure/k8s/deployment.yaml
+	new file:   infrastructure/monitoring/prometheus.yml
+	new file:   infrastructure/terraform/main.tf
+	modified:   package-lock.json
+	modified:   package.json
+	new file:   packages/api-gateway/Dockerfile
+	new file:   packages/api-gateway/package.json
+	new file:   packages/api-gateway/src/index.ts
+	new file:   packages/api-gateway/tsconfig.json
+	new file:   packages/auth-service/Dockerfile
+	new file:   packages/auth-service/package.json
+	new file:   packages/auth-service/src/index.ts
+	new file:   packages/auth-service/src/middleware/auth.ts
+	new file:   packages/auth-service/src/routes.ts
+	new file:   packages/auth-service/src/services/auth.service.ts
+	new file:   packages/auth-service/tsconfig.json
+	new file:   packages/common/package.json
+	new file:   packages/common/src/constants/compliance-mappings.ts
+	new file:   packages/common/src/constants/crypto-patterns.ts
+	new file:   packages/common/src/constants/index.ts
+	new file:   packages/common/src/db.ts
+	new file:   packages/common/src/index.ts
+	new file:   packages/common/src/types/index.ts
+	new file:   packages/common/src/utils/index.ts
+	new file:   packages/common/tsconfig.json
+	new file:   packages/compliance-service/package.json
+	new file:   packages/compliance-service/src/index.ts
+	new file:   packages/compliance-service/src/routes.ts
+	new file:   packages/compliance-service/tsconfig.json
+	new file:   packages/database/package.json
+	new file:   packages/database/schema.sql
+	new file:   packages/frontend
+	new file:   packages/gatekeeper-service/package.json
+	new file:   packages/gatekeeper-service/src/index.ts
+	new file:   packages/gatekeeper-service/src/routes.ts
+	new file:   packages/gatekeeper-service/tsconfig.json
+	new file:   packages/remediation-service/package.json
+	new file:   packages/remediation-service/src/index.ts
+	new file:   packages/remediation-service/src/prompts/remediation.ts
+	new file:   packages/remediation-service/src/routes.ts
+	new file:   packages/remediation-service/src/services/remediation.service.ts
+	new file:   packages/remediation-service/tsconfig.json
+	new file:   packages/risk-engine/package.json
+	new file:   packages/risk-engine/src/index.ts
+	new file:   packages/risk-engine/src/prompts/risk-analysis.ts
+	new file:   packages/risk-engine/src/routes.ts
+	new file:   packages/risk-engine/src/services/openai.ts
+	new file:   packages/risk-engine/src/services/scoring.ts
+	new file:   packages/risk-engine/tsconfig.json
+	new file:   packages/scanner-service/Dockerfile
+	new file:   packages/scanner-service/package.json
+	new file:   packages/scanner-service/src/index.ts
+	new file:   packages/scanner-service/src/parsers/go.ts
+	new file:   packages/scanner-service/src/parsers/index.ts
+	new file:   packages/scanner-service/src/parsers/java.ts
+	new file:   packages/scanner-service/src/parsers/javascript.ts
+	new file:   packages/scanner-service/src/parsers/python.ts
+	new file:   packages/scanner-service/src/routes.ts
+	new file:   packages/scanner-service/src/services/scanner.service.ts
+	new file:   packages/scanner-service/tsconfig.json
+	new file:   start-all.js
+	new file:   tsconfig.base.json
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	git_check.txt
+	git_check_utf8.txt
+	git_final_push.txt
+	git_final_push_utf8.txt
+	git_out.txt
+	git_pull_res.txt
+	git_pull_res_utf8.txt
+	git_reb_err.txt
+	git_ref.txt
+	git_ref_utf8.txt
+	git_remote_log.txt
+	git_remote_log_utf8.txt
+	git_st.txt
+	git_st_utf8.txt
+
+* (no branch, rebasing main)
+  main
+origin	https://github.com/Ekroff/CipherX.git (fetch)
+origin	https://github.com/Ekroff/CipherX.git (push)

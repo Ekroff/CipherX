@@ -14,7 +14,7 @@ const JWT_ACCESS_EXPIRY = process.env.JWT_ACCESS_EXPIRY || '15m';
 const JWT_REFRESH_EXPIRY = process.env.JWT_REFRESH_EXPIRY || '7d';
 
 export async function registerUser(
-    email: string, password: string, fullName: string, orgName: string
+    { email, password, fullName, orgName }: { email: string; password: string; fullName: string; orgName?: string }
 ) {
     const existingUser = await pool.query('SELECT id FROM users WHERE email = $1', [email]);
     if (existingUser.rows.length > 0) {
@@ -48,10 +48,10 @@ export async function registerUser(
         [orgId, user.id, user.id, JSON.stringify({ email, orgName })]
     );
 
-    return { user, tokens };
+    return { user, token: tokens.accessToken, tokens };
 }
 
-export async function loginUser(email: string, password: string) {
+export async function loginUser({ email, password }: { email: string; password: string }) {
     const result = await pool.query(
         'SELECT id, org_id, email, password_hash, full_name, role FROM users WHERE email = $1',
         [email]
@@ -79,11 +79,12 @@ export async function loginUser(email: string, password: string) {
 
     return {
         user: { id: user.id, email: user.email, fullName: user.full_name, role: user.role, orgId: user.org_id },
+        token: tokens.accessToken,
         tokens,
     };
 }
 
-export async function refreshToken(refreshTokenValue: string) {
+export async function refreshTokens(refreshTokenValue: string) {
     try {
         const decoded = jwt.verify(refreshTokenValue, JWT_SECRET) as JwtPayload & { type: string };
         if (decoded.type !== 'refresh') throw new Error('INVALID_TOKEN');

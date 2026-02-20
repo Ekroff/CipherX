@@ -1,0 +1,1 @@
+﻿11a088d Integrate Supabase auth in frontend and update configuration for direct Supabase usage
