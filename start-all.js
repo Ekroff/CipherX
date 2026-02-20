@@ -1,10 +1,23 @@
 // ============================================
 // CipherX – Start All Services (Development)
 // ============================================
-const { spawn } = require('child_process');
+const { spawn, execSync } = require('child_process');
 const path = require('path');
 
 require('dotenv').config();
+
+// Build @cipherx/common first — all services depend on it
+console.log('📦 Building @cipherx/common...');
+try {
+  execSync('npm run build', {
+    cwd: path.join(__dirname, 'packages', 'common'),
+    stdio: 'inherit',
+  });
+  console.log('✅ @cipherx/common built successfully.\n');
+} catch (err) {
+  console.error('❌ Failed to build @cipherx/common:', err.message);
+  process.exit(1);
+}
 
 const services = [
   { name: 'auth-service', port: process.env.AUTH_SERVICE_PORT || 3001, emoji: '🔐' },

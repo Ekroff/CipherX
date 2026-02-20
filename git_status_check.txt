@@ -1,0 +1,11 @@
+﻿git : To https://github.com/Ekroff/CipherX.git
+At line:1 char:59
++ ... ing = [System.Text.Encoding]::UTF8; git push origin main 
+2>&1 | Out-F ...
++                                         
+~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (To https://github 
+   .com/Ekroff/CipherX.git:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+   afe41f3..e46bbb5  main -> main
