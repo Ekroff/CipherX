@@ -1,0 +1,26 @@
+{
+  "name": "cipherx",
+  "version": "1.0.0",
+  "description": "CipherX – Cryptographic Bill of Materials & Remediation Engine",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "dev": "docker compose up -d && npm run dev:services",
+    "dev:services": "npm run dev --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "test:integration": "docker compose up -d && npm run test:integration --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "clean": "npm run clean --workspaces --if-present"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "author": "CipherX Team",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.97.0"
+  }
+}

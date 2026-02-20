@@ -1,0 +1,10 @@
+{
+    "name": "@cipherx/database",
+    "version": "1.0.0",
+    "description": "CipherX database schema and migrations",
+    "private": true,
+    "scripts": {
+        "migrate": "psql -f schema.sql",
+        "seed": "psql -f seeds/seed.sql"
+    }
+}

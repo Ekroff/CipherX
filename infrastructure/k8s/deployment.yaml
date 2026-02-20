@@ -1,0 +1,143 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cipherx-api-gateway
+  labels:
+    app: cipherx
+    component: api-gateway
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cipherx
+      component: api-gateway
+  template:
+    metadata:
+      labels:
+        app: cipherx
+        component: api-gateway
+    spec:
+      containers:
+        - name: api-gateway
+          image: cipherx/api-gateway:latest
+          ports:
+            - containerPort: 3000
+          envFrom:
+            - secretRef:
+                name: cipherx-secrets
+            - configMapRef:
+                name: cipherx-config
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 15
+            periodSeconds: 20
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cipherx-api-gateway
+  labels:
+    app: cipherx
+    component: api-gateway
+spec:
+  type: ClusterIP
+  ports:
+    - port: 3000
+      targetPort: 3000
+  selector:
+    app: cipherx
+    component: api-gateway
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: cipherx-api-gateway-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: cipherx-api-gateway
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: cipherx-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+spec:
+  tls:
+    - hosts:
+        - api.cipherx.io
+      secretName: cipherx-tls
+  rules:
+    - host: api.cipherx.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: cipherx-api-gateway
+                port:
+                  number: 3000
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cipherx-config
+data:
+  NODE_ENV: "production"
+  API_VERSION: "v1"
+  LOG_LEVEL: "info"
+  LOG_FORMAT: "json"
+  DB_HOST: "cipherx-postgres"
+  DB_PORT: "5432"
+  DB_NAME: "cipherx"
+  REDIS_HOST: "cipherx-redis"
+  REDIS_PORT: "6379"
+  ES_HOST: "http://cipherx-elasticsearch:9200"
+  AUTH_SERVICE_PORT: "3001"
+  SCANNER_SERVICE_PORT: "3002"
+  RISK_ENGINE_PORT: "3003"
+  REMEDIATION_SERVICE_PORT: "3004"
+  GATEKEEPER_SERVICE_PORT: "3005"
+  COMPLIANCE_SERVICE_PORT: "3006"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cipherx-secrets
+type: Opaque
+stringData:
+  JWT_SECRET: "REPLACE_WITH_STRONG_RANDOM_SECRET"
+  OPENAI_API_KEY: "REPLACE_WITH_API_KEY"
+  DB_USER: "cipherx_user"
+  DB_PASSWORD: "REPLACE_WITH_STRONG_PASSWORD"
+  ENCRYPTION_KEY: "REPLACE_WITH_32_BYTE_HEX"

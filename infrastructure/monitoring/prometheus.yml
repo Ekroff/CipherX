@@ -1,0 +1,51 @@
+# ============================================
+# CipherX – Prometheus Monitoring Configuration
+# ============================================
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: 'cipherx-api-gateway'
+    static_configs:
+      - targets: ['api-gateway:3000']
+    metrics_path: /health
+
+  - job_name: 'cipherx-auth-service'
+    static_configs:
+      - targets: ['auth-service:3001']
+    metrics_path: /health
+
+  - job_name: 'cipherx-scanner-service'
+    static_configs:
+      - targets: ['scanner-service:3002']
+    metrics_path: /health
+
+  - job_name: 'cipherx-risk-engine'
+    static_configs:
+      - targets: ['risk-engine:3003']
+    metrics_path: /health
+
+  - job_name: 'cipherx-remediation-service'
+    static_configs:
+      - targets: ['remediation-service:3004']
+    metrics_path: /health
+
+  - job_name: 'cipherx-gatekeeper-service'
+    static_configs:
+      - targets: ['gatekeeper-service:3005']
+    metrics_path: /health
+
+  - job_name: 'cipherx-compliance-service'
+    static_configs:
+      - targets: ['compliance-service:3006']
+    metrics_path: /health
+
+  - job_name: 'postgres'
+    static_configs:
+      - targets: ['postgres-exporter:9187']
+
+  - job_name: 'redis'
+    static_configs:
+      - targets: ['redis-exporter:9121']
