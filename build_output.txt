@@ -1,0 +1,13 @@
+﻿On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+git : Everything up-to-date
+At line:1 char:224
++ ... _output.txt -Append -Encoding utf8; git push origin main 2>&1 | 
+Out-F ...
++                                         ~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Everything up-to-date:Str 
+   ing) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
