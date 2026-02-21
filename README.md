@@ -69,7 +69,7 @@ npm run dev
 
 ## Deploying to Vercel (frontend)
 
-To deploy the frontend app:
+The frontend is in **packages/frontend** (not in the database package). To deploy it:
 
 1. **Set Root Directory**  
    In the Vercel project: **Settings → General → Root Directory** → set to `packages/frontend`. This makes Vercel use that package as the project root (its `vercel.json` and `npm run build`).
@@ -203,6 +203,8 @@ terraform apply
 
 ## 📂 Project Structure
 
+The **frontend** lives in `packages/frontend` (inside the `packages` folder, alongside other packages—not inside database).
+
 ```
 CipherX/
 ├── packages/
@@ -215,7 +217,7 @@ CipherX/
 │   ├── gatekeeper-service/  # CI/CD Gatekeeper
 │   ├── compliance-service/  # Compliance & Reporting
 │   ├── api-gateway/         # Unified API Gateway
-│   └── frontend/            # Stitch-compatible UI
+│   └── frontend/            # UI app (packages/frontend, not in database)
 ├── infrastructure/
 │   ├── k8s/                 # Kubernetes manifests
 │   ├── terraform/           # AWS IaC
