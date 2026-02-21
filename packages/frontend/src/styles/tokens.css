@@ -1,0 +1,63 @@
+/* =============================================
+   CipherX Design Tokens
+   ============================================= */
+:root {
+  /* ---- Purple Palette (60-30-10 Rule) ---- */
+  --bg-page: #F3F0FA;
+  --bg-card: #EAE4F5;
+  --purple-deep: #3D1F8F;
+  --purple-mid: #5B2EBF;
+  --border: #C4B5E8;
+  --accent: #7C3AED;
+  --hover-glow: #9F67FF;
+  --text-primary: #1A0D3D;
+  --text-secondary: #6B5A8E;
+  --purple-darkest: #1A0D3D;
+  --purple-footer: #1A0D3D;
+
+  /* ---- Semantic Colors ---- */
+  --danger: #C0392B;
+  --danger-bg: #FDECEA;
+  --warning: #D4821A;
+  --warning-bg: #FEF3E2;
+  --success: #1A7A4A;
+  --success-bg: #E8F5EC;
+
+  /* ---- Typography ---- */
+  --font-display: 'Sora', sans-serif;
+  --font-body: 'IBM Plex Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* ---- Spacing Scale (4px base) ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 28px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* ---- Border Radius ---- */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+
+  /* ---- Shadows ---- */
+  --shadow-sm: 0 1px 3px rgba(26,13,61,0.06);
+  --shadow-md: 0 4px 12px rgba(26,13,61,0.08);
+  --shadow-lg: 0 8px 30px rgba(26,13,61,0.12);
+  --shadow-glow: 0 0 0 3px rgba(124,58,237,0.15);
+
+  /* ---- Transitions ---- */
+  --transition-fast: 150ms ease;
+  --transition-base: 200ms ease;
+  --transition-slow: 300ms ease;
+}
