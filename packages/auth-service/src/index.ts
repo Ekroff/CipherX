@@ -12,7 +12,7 @@ import authRoutes from './routes';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.AUTH_SERVICE_PORT || 3001;
+const PORT = process.env.PORT || process.env.AUTH_SERVICE_PORT || 3001;
 
 // --- Security Middleware ---
 app.use(helmet());

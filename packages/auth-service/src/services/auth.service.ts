@@ -21,10 +21,12 @@ export async function registerUser(
         throw new Error('USER_EXISTS');
     }
 
-    // Create organization
+    // Create organization (schema: name, slug, pricing_tier)
+    const baseSlug = (orgName || 'org').toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') || 'org';
+    const slug = `${baseSlug}-${uuidv4().slice(0, 8)}`;
     const orgResult = await pool.query(
-        'INSERT INTO organizations (name, plan) VALUES ($1, $2) RETURNING id',
-        [orgName, 'free']
+        `INSERT INTO organizations (name, slug, pricing_tier) VALUES ($1, $2, 'free') RETURNING id`,
+        [orgName || 'My Organization', slug]
     );
     const orgId = orgResult.rows[0].id;
 

@@ -20,14 +20,14 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const JWT_SECRET = process.env.JWT_SECRET || 'dev-secret-change-in-production';
 
-// Service URLs
+// Service URLs (use AUTH_SERVICE_URL etc. for cloud deploy, else localhost)
 const SERVICES = {
-    auth: `http://localhost:${process.env.AUTH_SERVICE_PORT || 3001}`,
-    scanner: `http://localhost:${process.env.SCANNER_SERVICE_PORT || 3002}`,
-    riskEngine: `http://localhost:${process.env.RISK_ENGINE_PORT || 3003}`,
-    remediation: `http://localhost:${process.env.REMEDIATION_SERVICE_PORT || 3004}`,
-    gatekeeper: `http://localhost:${process.env.GATEKEEPER_SERVICE_PORT || 3005}`,
-    compliance: `http://localhost:${process.env.COMPLIANCE_SERVICE_PORT || 3006}`,
+    auth: process.env.AUTH_SERVICE_URL || `http://localhost:${process.env.AUTH_SERVICE_PORT || 3001}`,
+    scanner: process.env.SCANNER_SERVICE_URL || `http://localhost:${process.env.SCANNER_SERVICE_PORT || 3002}`,
+    riskEngine: process.env.RISK_ENGINE_URL || `http://localhost:${process.env.RISK_ENGINE_PORT || 3003}`,
+    remediation: process.env.REMEDIATION_SERVICE_URL || `http://localhost:${process.env.REMEDIATION_SERVICE_PORT || 3004}`,
+    gatekeeper: process.env.GATEKEEPER_SERVICE_URL || `http://localhost:${process.env.GATEKEEPER_SERVICE_PORT || 3005}`,
+    compliance: process.env.COMPLIANCE_SERVICE_URL || `http://localhost:${process.env.COMPLIANCE_SERVICE_PORT || 3006}`,
 };
 
 const pool = getPool();
