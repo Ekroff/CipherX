@@ -63,8 +63,8 @@ async function apiFetch(path, options = {}) {
             data = JSON.parse(text);
         } catch (e) {
             const msg = !res.ok
-                ? `Request failed (${res.status}). Response was not JSON.`
-                : `Invalid response from server (not JSON).`;
+                ? `Request failed (${res.status}). Response was not JSON or was truncated.`
+                : `Invalid response from server (not JSON or truncated).`;
             throw new Error(msg);
         }
     }

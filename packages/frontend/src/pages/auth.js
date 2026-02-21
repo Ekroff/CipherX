@@ -302,8 +302,8 @@ function setupFormSubmit() {
         btn.innerHTML = 'Create Account →';
         btn.classList.remove('loading');
         let msg = err.message || 'Signup failed. Please try again.';
-        if (msg.includes('no body') || msg.includes('not JSON')) {
-          msg += ' The API backend may be unreachable—check that it is running and the correct URL is configured.';
+        if (msg.includes('Unexpected end of JSON input') || msg.includes('no body') || msg.includes('not JSON')) {
+          msg = 'Signup failed: the server response was empty or invalid. The API backend may be unreachable—check that it is running and the correct URL is configured.';
         }
         showAuthError('signupError', msg);
       }
