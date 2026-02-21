@@ -1,10 +1,35 @@
-﻿packages/api-gateway
-packages/auth-service
-packages/common
-packages/compliance-service
-packages/database
-packages/frontend
-packages/gatekeeper-service
-packages/remediation-service
-packages/risk-engine
-packages/scanner-service
+﻿node.exe : npm warn cleanup Failed to remove some directories [
+At C:\Program Files\nodejs\npm.ps1:29 char:3
++   & $NODE_EXE $NPM_CLI_JS $args
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (npm warn cleanu...e directories [:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+npm warn cleanup   [
+npm warn cleanup     
+'C:\\Users\\MYPC\\Downloads\\CipherX\\packages\\frontend\\node_modules\\@esbuild\\.win32-x64-P2mOpiMx',
+npm warn cleanup     [Error: EPERM: operation not permitted, unlink 
+'C:\Users\MYPC\Downloads\CipherX\packages\frontend\node_modules\@esbuild\.win32-x64-P2mOpiMx\esbuild.exe'] {
+npm warn cleanup       errno: -4048,
+npm warn cleanup       code: 'EPERM',
+npm warn cleanup       syscall: 'unlink',
+npm warn cleanup       path: 
+'C:\\Users\\MYPC\\Downloads\\CipherX\\packages\\frontend\\node_modules\\@esbuild\\.win32-x64-P2mOpiMx\\esbuild.exe'
+npm warn cleanup     }
+npm warn cleanup   ]
+npm warn cleanup ]
+
+changed 3 packages, and audited 508 packages in 8s
+
+91 packages are looking for funding
+  run `npm fund` for details
+
+6 vulnerabilities (2 moderate, 4 high)
+
+To address all issues possible (including breaking changes), run:
+  npm audit fix --force
+
+Some issues need review, and may require choosing
+a different dependency.
+
+Run `npm audit` for details.
