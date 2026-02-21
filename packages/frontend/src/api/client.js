@@ -50,10 +50,27 @@ async function apiFetch(path, options = {}) {
         headers,
     });
 
-    const data = await res.json();
+    // Read body as text first to avoid "Unexpected end of JSON input" on empty/non-JSON responses
+    const text = await res.text();
+    let data;
+    if (!text || text.trim() === '') {
+        if (!res.ok) {
+            throw new Error(`Request failed (${res.status}). Server returned no body.`);
+        }
+        data = {};
+    } else {
+        try {
+            data = JSON.parse(text);
+        } catch (e) {
+            const msg = !res.ok
+                ? `Request failed (${res.status}). Response was not JSON.`
+                : `Invalid response from server (not JSON).`;
+            throw new Error(msg);
+        }
+    }
 
     if (!res.ok) {
-        const msg = data?.error?.message || `Request failed (${res.status})`;
+        const msg = data?.error?.message || data?.error?.code || `Request failed (${res.status})`;
         throw new Error(msg);
     }
 

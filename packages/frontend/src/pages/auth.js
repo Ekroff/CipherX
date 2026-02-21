@@ -301,7 +301,11 @@ function setupFormSubmit() {
       } catch (err) {
         btn.innerHTML = 'Create Account →';
         btn.classList.remove('loading');
-        showAuthError('signupError', err.message || 'Signup failed. Please try again.');
+        let msg = err.message || 'Signup failed. Please try again.';
+        if (msg.includes('no body') || msg.includes('not JSON')) {
+          msg += ' The API backend may be unreachable—check that it is running and the correct URL is configured.';
+        }
+        showAuthError('signupError', msg);
       }
     });
   }
