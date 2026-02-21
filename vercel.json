@@ -1,5 +1,5 @@
 {
-    "buildCommand": "npm run build --workspace=packages/frontend",
+    "buildCommand": "npm run vercel-build",
     "outputDirectory": "packages/frontend/dist",
     "installCommand": "npm install",
     "rewrites": [

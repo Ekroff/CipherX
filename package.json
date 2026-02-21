@@ -8,6 +8,9 @@
   ],
   "scripts": {
     "build": "npm run build --workspaces --if-present",
+    "build:frontend": "npm run build --workspace=packages/frontend",
+    "vercel-build": "cd packages/frontend && npm run build",
+    "build:frontend:safe": "powershell -NoProfile -ExecutionPolicy Bypass -File ./build-frontend.ps1",
     "dev": "docker compose up -d && npm run dev:services",
     "dev:services": "npm run dev --workspaces --if-present",
     "test": "npm run test --workspaces --if-present",
@@ -20,6 +23,10 @@
   },
   "author": "CipherX Team",
   "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ekroff/CipherX.git"
+  },
   "dependencies": {
     "@supabase/supabase-js": "^2.97.0"
   }

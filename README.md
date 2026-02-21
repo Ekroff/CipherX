@@ -2,6 +2,8 @@
 
 > Enterprise-grade SaaS platform for cryptographic vulnerability scanning, AI-powered risk analysis, CI/CD enforcement, and compliance reporting.
 
+**Repository:** [https://github.com/Ekroff/CipherX](https://github.com/Ekroff/CipherX)
+
 ![Architecture](https://img.shields.io/badge/Architecture-Microservices-blue)
 ![Node.js](https://img.shields.io/badge/Node.js-20+-green)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue)
@@ -41,6 +43,7 @@ CipherX is a modular microservices platform built with Node.js/TypeScript:
 ### 1. Setup
 ```bash
 # Clone and install
+git clone https://github.com/Ekroff/CipherX.git
 cd CipherX
 cp .env.example .env
 # Edit .env with your OPENAI_API_KEY
@@ -61,6 +64,28 @@ npm run dev
 ### 4. Access
 - **API Gateway**: http://localhost:3000
 - **Health Check**: http://localhost:3000/health
+
+---
+
+## Deploying to Vercel (frontend)
+
+To deploy the frontend app:
+
+1. **Set Root Directory**  
+   In the Vercel project: **Settings → General → Root Directory** → set to `packages/frontend`. This makes Vercel use that package as the project root (its `vercel.json` and `npm run build`).
+
+2. **Node version**  
+   The repo root has an `.nvmrc` with `20`; Vercel will use Node 20 when building.
+
+3. **If you keep Root Directory at repo root**  
+   Use the root `vercel.json` as-is: build command `npm run build --workspace=packages/frontend`, output directory `packages/frontend/dist`.
+
+4. **If the build fails**  
+   Paste the **full error** from the Vercel build log (or your local build) into `build_output.txt` in the repo root so it can be used to fix the issue.
+
+5. **Windows: EPERM / "operation not permitted" during `npm install`**  
+   If install fails or warns about unlinking `esbuild.exe`, either close other Node processes and run `npm install` again, or use the safe build script so stderr doesn't abort the run:  
+   `npm run build:frontend:safe` (runs install + frontend build without PowerShell treating npm stderr as a failure).
 
 ---
 
