@@ -42,7 +42,9 @@ app.use(cors({
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Org-Id'],
 }));
-app.use(express.json({ limit: '50mb' }));
+// NOTE: express.json() must NOT be applied globally — it consumes the raw body
+// stream, preventing http-proxy-middleware from forwarding request bodies to
+// downstream services.  We apply it only to locally-handled routes below.
 app.use(morgan('combined'));
 
 // Global rate limiting
